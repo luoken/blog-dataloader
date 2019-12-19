@@ -7,7 +7,7 @@ defmodule Blog.Repo.Migrations.CreatePost do
       add :body, :string
     end
 
-    create table(:comment) do
+    create table(:comments) do
       add :post_id, :id
       add :body, :string
     end

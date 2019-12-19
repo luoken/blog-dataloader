@@ -1,18 +1,21 @@
-defmodule Blog.Resource.AddCommentResource do
+defmodule Blog.Resource.Comment do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Blog.Resource.Post
 
-  schema "comment" do
-    field :post_id, :id
+  @primary_key {:id, :id, autogenerate: true}
+  @foreign_key_type :id
+  schema "comments" do
     field :body, :string
+    belongs_to(:post, Post)
   end
 
   def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:post_id, :body])
+    |> cast(attrs, [:body, :post_id])
     |> validate_required([
-      :post_id,
-      :body
+      :body,
+      :post_id
     ])
   end
 end

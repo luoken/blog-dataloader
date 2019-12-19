@@ -8,9 +8,6 @@ defmodule BlogWeb.Schema.ContentTypes do
     field :title, :string
     field :body, :string
     field :comments, list_of(:comment), resolve: dataloader(BlogWeb.Dataloaders.Comments)
-    # field :comments, list_of(:comment) do
-    #   resolve(&Resolvers.Comment.find_comments_by_id/3)
-    # end
   end
 
   object :comment do

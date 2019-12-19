@@ -5,6 +5,7 @@ defmodule BlogWeb.Schema do
   import_types(BlogWeb.Schema.InputTypes)
 
   alias BlogWeb.Resolvers
+  alias BlogWeb.Dataloaders
 
   query do
     @desc "Get all posts"
@@ -33,6 +34,19 @@ defmodule BlogWeb.Schema do
       arg(:create_content, non_null(:content_create))
       resolve(&BlogWeb.Resolvers.Content.create_content/3)
     end
+  end
+
+  def context(ctx) do
+    Map.put(ctx, :loader, loader())
+  end
+
+  defp loader do
+    Dataloader.new()
+    |> Dataloader.add_source(Dataloaders.Comments, Dataloaders.Comments.data())
+  end
+
+  def plugins do
+    [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
   end
 
 end

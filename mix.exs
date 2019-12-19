@@ -42,7 +42,8 @@ defmodule Blog.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:absinthe, "~> 1.4.6"},
-      {:absinthe_plug, "~> 1.4.7"}
+      {:absinthe_plug, "~> 1.4.7"},
+      {:dataloader, "~> 1.0"}
     ]
   end
 

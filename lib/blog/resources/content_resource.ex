@@ -3,7 +3,13 @@ defmodule Blog.Resource.ContentResource do
   alias Blog.Resource.Post
   import Ecto.Query, only: [from: 2]
 
-  def list_posts(), do: Repo.all(Post)
+  # def list_posts(), do: Repo.all(Post)
+  def list_posts(arg) do
+    Enum.reduce(arg, Post, fn
+      _, query ->
+        query
+    end)
+  end
 
   def find_post(id) do
     Repo.all(from a in Post, where: a.id == ^id)

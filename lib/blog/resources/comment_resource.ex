@@ -6,8 +6,7 @@ defmodule Blog.Resource.CommentResource do
   def list_comments(), do: Repo.all(Comment)
 
   def find_comments_by_id(id) do
-    query =
-      Repo.all(from a in Comment, where: a.post_id == ^id)
+    query = Repo.all(from a in Comment, where: a.post_id == ^id)
 
     IO.inspect("was hit from find_comments_by_id")
     query
@@ -18,6 +17,4 @@ defmodule Blog.Resource.CommentResource do
     |> Comment.changeset(attrs)
     |> Repo.insert()
   end
-
-  
 end

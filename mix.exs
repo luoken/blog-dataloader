@@ -43,6 +43,7 @@ defmodule Blog.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:absinthe, "~> 1.4.6"},
       {:absinthe_plug, "~> 1.4.7"},
+      {:absinthe_relay, "~> 1.4.6"},
       {:dataloader, "~> 1.0"}
     ]
   end

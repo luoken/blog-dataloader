@@ -1,8 +1,16 @@
 defmodule BlogWeb.Resolvers.Content do
   alias Blog.Resource.ContentResource
 
-  def list_posts(_parent, _arg, _resolution) do
-    {:ok, ContentResource.list_posts()}
+  # def list_posts(_parent, _arg, _resolution) do
+  #   {:ok, ContentResource.list_posts()}
+  # end
+
+  def list_posts(_parent, arg, _resolution) do
+    Absinthe.Relay.Connection.from_query(
+      ContentResource.list_posts(arg),
+      &Blog.Repo.all/1,
+      arg
+    )
   end
 
   def find_posts(_parent, %{id: id}, _resolution) do

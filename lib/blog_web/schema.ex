@@ -1,5 +1,6 @@
 defmodule BlogWeb.Schema do
   use Absinthe.Schema
+  use Absinthe.Relay.Schema, :modern
 
   import_types(BlogWeb.Schema.ContentTypes)
   import_types(BlogWeb.Schema.InputTypes)
@@ -9,7 +10,8 @@ defmodule BlogWeb.Schema do
 
   query do
     @desc "Get all posts"
-    field :posts, list_of(:post) do
+    # field :posts, list_of(:post) do
+    connection field :posts, node_type: :post do
       resolve(&Resolvers.Content.list_posts/3)
     end
 
@@ -48,5 +50,4 @@ defmodule BlogWeb.Schema do
   def plugins do
     [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
   end
-
 end

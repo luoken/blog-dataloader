@@ -7,7 +7,7 @@ defmodule BlogWeb.Resolvers.Content do
 
   def list_posts(_parent, arg, _resolution) do
     Absinthe.Relay.Connection.from_query(
-      ContentResource.list_posts(),
+      ContentResource.list_posts(arg),
       &Blog.Repo.all/1,
       arg
     )

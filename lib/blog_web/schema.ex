@@ -50,5 +50,4 @@ defmodule BlogWeb.Schema do
   def plugins do
     [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
   end
-
 end

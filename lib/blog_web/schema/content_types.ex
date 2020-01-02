@@ -3,7 +3,7 @@ defmodule BlogWeb.Schema.ContentTypes do
   use Absinthe.Relay.Schema.Notation, :modern
   import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
-  connection node_type: :post
+  connection(node_type: :post)
 
   object :post do
     field :id, :id
